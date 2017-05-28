@@ -1,0 +1,354 @@
+<html>
+	<head>
+		<link rel="icon" href="https://www.dropbox.com/s/2hcw8wrv7jrlnmu/favicon.png?dl=1">
+		<title>VMTeasy</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<link rel="stylesheet" href="style.css">
+		
+		<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.2.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r75/three.min.js"></script>
+		<script type="text/javascript" src="vmteasy.min.js"></script>
+		</head>
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				  <a class="navbar-brand" href="#">VMTEasy</a>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><button id="vmt-import">Import VMT</button></li>
+						<li><input type="file" id="vmt-file"/></li>
+						<li><button id="vmt-export">Export to VMT</button></li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3 col-md-3 sidebar" id="parameters">
+					<ul class="nav nav-sidebar">
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">Filename</span>
+										<input type="text" id="output-filename"/>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<div class="active"><a href="#">Basic</a></div>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">Shader</span>
+										<select class="col-sm-6 col-md-6" id="param_shader_value">
+											<option value="UnLitGeneric">UnLitGeneric</option>	
+											<option value="LightMappedGeneric">LightMappedGeneric</option>
+											<option value="VertexLitGeneric">VertexLitGeneric</option>
+										</select>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$basetexture</span>
+										<input type="file" id="param_basetexture_value" class="col-sm-6 col-md-6"/>
+								</div>
+							</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$detail</span>
+										<select id="param_detail_value" class="col-sm-6 col-md-6">
+											<option value="0">0</option>
+											<option value="1">1</option>
+										</select>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$surfaceprop</span>
+										<select id="param_surfaceprop_value" class="col-sm-6 col-md-6">
+											<option value="-1">None</option>
+											<option value="concrete">Concrete</option>
+											<option value="carpet">Carpet</option>
+											<option value="flesh">Flesh</option>
+											<option value="grass">Grass</option>
+											<option value="plaster">Plaster</option>
+											<option value="rock">Rock</option>
+											<option value="stone">Stone</option>
+										</select>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$model</span>
+										<select id="param_model_value" class="col-sm-6 col-md-6">
+											<option value="0">0</option>
+											<option value="1">1</option>
+										</select>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<div><a href="#">Adjustment</a></div>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$basetexturetransform</span>
+										<input type="text" id="param_basetexturetransform_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$color</span>
+										<input type="text" id="param_color_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>	
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$seamless</span>
+										<input type="text" id="param_seamless_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>		
+					<ul class="nav nav-sidebar">
+						<div><a href="#">Transparency</a></div>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$alpha</span>
+										<input type="text" id="param_alpha_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$blendmodulatetexture</span>
+										<input type="text" id="param_blendmodulatetexture_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$distancealpha</span>
+										<input type="text" id="param_distancealpha_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$nocull</span>
+										<input type="text" id="param_nocull_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$translucent</span>
+										<select id="param_translucent_value" class="col-sm-6 col-md-6">
+											<option value="0">0</option>
+											<option value="1">1</option>
+										</select>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<div><a href="#">Lighting</a></div>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$bumpmap</span>
+										<input type="file" id="param_bumpmap_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$ssbump</span>
+										<select id="param_ssbump_value" class="col-sm-6 col-md-6">
+											<option value="0">0</option>
+											<option value="1">1</option>
+										</select>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$bumptransform</span>
+										<input type="text" id="param_bumptransform_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$selfillum</span>
+										<input type="text" id="param_selfillum_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$halflambert</span>
+										<input type="text" id="param_halflambert_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$ambientocclusion</span>
+										<input type="text" id="param_ambientocclusion_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<div><a href="#">Reflection</a></div>	
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$reflectivity</span>
+										<input type="text" id="param_reflectivity_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$phong</span>
+										<input type="text" id="param_phong_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$envmap</span>
+										<input type="text" id="param_envmap_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$envmaptint</span>
+										<input type="text" id="param_envmaptint_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					
+					<ul class="nav nav-sidebar">
+						<div><a href="#">Optimisation</a></div>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$ignorez</span>
+										<input type="text" id="param_ignorez_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<div class="container-fluid">
+									<div class="row">
+										<span class="col-sm-6 col-md-6">$alphatest</span>
+										<input type="text" id="param_alphatest_value" class="col-sm-6 col-md-6"/>
+									</div>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<div><a href="#">Proxies</a></div>
+					</ul>
+					<ul class="nav nav-sidebar">
+						<div><a href="#">Others</a></div>
+					</ul>
+				</div>
+				<div class="col-sm-10 col-sm-offset-3 col-md-9 col-md-offset-3 main" id="renderer"></div>
+			</div>
+		</div>
+		
+		<div id="renderer-controls">
+			<span id="btn-play" class="glyphicon glyphicon-play"></span>
+		</div>		
+		<canvas id="image_canvas"></canvas>
+	</body>
+</html>
+
+<!--Skybox textures by Pieter Verhoeven-->

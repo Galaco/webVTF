@@ -1,0 +1,134 @@
+body {
+	background-color: #7db2e2;
+	margin: 0;
+	font-family: 'Arial';
+}
+
+#navbar button { 
+   margin: 5px 8px 0 0;
+   height: 40px;
+   padding: 7.5px 15px;
+   border-radius: 4px;
+   box-shadow: 0;
+   text-shadow: 0;
+   color: white;
+   font-size: 14px;
+   font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+}
+
+#vmt-export {
+   border: 0;
+   background: #1ea14c;
+   background: -webkit-gradient(linear, left top, left bottom, from(#36d12e), to(#1ea14c));
+   background: -webkit-linear-gradient(top, #36d12e, #1ea14c);
+   background: -moz-linear-gradient(top, #36d12e, #1ea14c);
+   background: -ms-linear-gradient(top, #36d12e, #1ea14c);
+   background: -o-linear-gradient(top, #36d12e, #1ea14c);
+}
+#vmt-export:hover {
+   background: #06bf31;
+   color: #ffffff;
+}
+#vmt-export:active {
+   background: #15a125;
+}
+
+#vmt-import {
+   border: 0;
+   background: #f73169;
+   background: -webkit-gradient(linear, left top, left bottom, from(#fc5181), to(#f73169));
+   background: -webkit-linear-gradient(top, #fc5181, #f73169);
+   background: -moz-linear-gradient(top, #fc5181, #f73169);
+   background: -ms-linear-gradient(top, #fc5181, #f73169);
+   background: -o-linear-gradient(top, #fc5181, #f73169);
+}
+#vmt-import:hover {
+   background: #f50c33;
+   color: #ffffff;
+}
+#vmt-import:active {
+   background: #ff2638;
+}
+
+#vmt-file {
+	display: none;
+}
+
+.nav-sidebar {
+    margin-right: -21px;
+    margin-left: -20px;
+}
+
+.nav-sidebar > .active > a, .nav-sidebar > .active > a:hover, .nav-sidebar > .active > a:focus {
+    color: #fff;
+    background-color: #428bca;
+}
+
+.nav-sidebar > div:hover {
+	text-decoration: none;
+    background-color: #eee;
+}
+
+.nav-sidebar > div > a, .nav-sidebar > li > a {
+    padding-right: 20px;
+    padding-left: 20px;
+	position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+
+.nav-sidebar > li {
+	display: none;
+}
+
+.nav-sidebar > li:last-child {
+	border-bottom: 1px solid #ddd;
+}
+
+.nav-sidebar > div.active ~ li {
+	display: block;
+}
+
+#renderer {
+	position: absolute;
+	padding: 0;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 75%;
+	z-index: 1;
+}
+
+#image_canvas {
+	width: 512px;
+	height: 512px;
+	display: none;
+}
+
+@media (min-width: 768px) {
+	.sidebar {
+		position: fixed;
+		top: 51px;
+		bottom: 0;
+		left: 0;
+		z-index: 1000;
+		display: block;
+		padding: 20px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		background-color: #f5f5f5;
+		border-right: 1px solid #eee;
+	}
+}
+
+#renderer-controls  {
+	position: fixed;
+	bottom: 8px;
+	right: 8px;
+	z-index: 2;
+	padding: 4px 8px 6px 8px;
+	border: 1px solid #000;
+	border-radius: 4px;
+}
